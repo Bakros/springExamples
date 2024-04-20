@@ -26,7 +26,7 @@ public class MainController {
         tempStudents.add(new Student(2,"Pedro",19));
         tempStudents.add(new Student(3,"Maria",25));
 
-
+        System.out.println("hi");
         model.addAttribute("students", tempStudents);
 
         return "show-students";
