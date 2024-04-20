@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student List</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <h1>Students</h1>
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+	  <tr>
+        <td>1</td>
+        <td>Juan</td>
+        <td>15</td>
+      </tr>
+	  <tr>
+		<td>2</td>
+		<td>Pedro</td>
+		<td>12</td>
+	  </tr>
+	  <tr>
+		<td>3</td>
+		<td>Pablo</td>
+		<td>2</td>
+	  </tr>
+    </tbody>
+  </table>
+  <button id="submitBtn">Submit Students</button>
+
+  <script>
+    $(document).ready(function() {
+      $("#submitBtn").click(function() {
+        // Get student data from the table
+        var students = [];
+        $("#studentTable tbody tr").each(function() {
+		
+			console.log("TEST");
+          var id = $(this).find("td:nth-child(1)").text();
+          var name = $(this).find("td:nth-child(2)").text();
+          var age = $(this).find("td:nth-child(3)").text();
+          students.push({ id: id, name: name, age: age });
+        });
+
+        // Send data to server using AJAX
+        $.ajax({
+          url: "/students",
+          type: "POST",
+          contentType: "application/json",
+          dataType: "json",
+          data: JSON.stringify(students),
+          success: function(response) {
+            // Handle successful response (optional)
+            console.log("Students submitted successfully!");
+          },
+          error: function(error) {
+            console.error("Error submitting students:", error);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
