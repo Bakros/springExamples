@@ -1,4 +1,4 @@
-package com.example.demoJava;
+package com.example.demoJava.HTMLTable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
