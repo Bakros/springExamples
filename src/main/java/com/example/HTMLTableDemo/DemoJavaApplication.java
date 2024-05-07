@@ -1,4 +1,4 @@
-package com.example.demoJava;
+package com.example.HTMLTableDemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

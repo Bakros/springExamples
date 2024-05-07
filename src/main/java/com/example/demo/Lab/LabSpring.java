@@ -1,6 +1,5 @@
-package com.example.demo.Chapter3.Lab;
+package com.example.demo.Lab;
 
-import com.example.demo.Chapter3.ConfiguratorClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.springframework.context.ApplicationContext;

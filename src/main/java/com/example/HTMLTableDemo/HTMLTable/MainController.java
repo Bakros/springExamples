@@ -1,4 +1,4 @@
-package com.example.demoJava.HTMLTable;
+package com.example.HTMLTableDemo.HTMLTable;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

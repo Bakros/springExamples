@@ -1,4 +1,4 @@
-package com.example.demo.Chapter3;
+package com.example.demo.Chapter3.PaperPrinterDemo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

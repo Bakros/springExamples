@@ -1,4 +1,4 @@
-package com.example.demo.Chapter3;
+package com.example.demo.Chapter3.PaperPrinterDemo;
 
 public class PaperPrinter implements Printer{
     @Override

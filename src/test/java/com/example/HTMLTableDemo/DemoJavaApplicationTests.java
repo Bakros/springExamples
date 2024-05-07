@@ -1,4 +1,4 @@
-package com.example.demoJava;
+package com.example.HTMLTableDemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
