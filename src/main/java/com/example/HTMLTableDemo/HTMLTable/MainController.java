@@ -8,11 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class MainController {
+
+    @RequestMapping("/resource")
+    public Map<String,Object> home() {
+        Map<String,Object> model = new HashMap<String,Object>();
+        model.put("id", UUID.randomUUID().toString());
+        model.put("content", "Hello World");
+        return model;
+    }
+
 
     @GetMapping("/students")
     public String showStudent(Model model){
