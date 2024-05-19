@@ -2,11 +2,14 @@ package com.example.demo.Lab;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
+import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 /**
  * Example how to register an object into the Context Application as a Bean.
@@ -15,6 +18,15 @@ import org.springframework.stereotype.Component;
 public class LabSpring {
     public static void main(String[] args) {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(Configurator.class);
+
+        // Print the display the context name
+        System.out.println("Hello" + ctx.getDisplayName());
+
+        // Print all Annotations related to a class.
+        Arrays.stream(Configurator.class.getAnnotations())
+                .forEach(System.out::println);
+
+
 
         // Se obtiene el Bean del tipo Mix y se asigna a mixBean (Bean 1).
         // Se imprime el objeto rescatado por Spring.
