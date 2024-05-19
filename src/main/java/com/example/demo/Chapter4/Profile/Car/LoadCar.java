@@ -3,7 +3,7 @@ package com.example.demo.Chapter4.Profile.Car;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-(public class LoadCar {
+public class LoadCar {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         //ctx.getEnvironment().setActiveProfiles("slow","fast");
@@ -16,4 +16,3 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
         System.out.println(car.toString());
     }
 }
-)
