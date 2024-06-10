@@ -1,4 +1,4 @@
-package com.example.demo.Chapter5_AOP.AspectJAnnotationTest;
+package com.example.demo.Chapter5_AOP_Anno.AspectJAnnotation;
 
 class Guitar {
     private String brand =" Martin";
@@ -13,12 +13,5 @@ class Guitar {
 
     public void setBrand(String brand) {
         this.brand = brand;
-    }
-
-    public Guitar(String brand) {
-        this.brand = brand;
-    }
-
-    public Guitar() {
     }
 }

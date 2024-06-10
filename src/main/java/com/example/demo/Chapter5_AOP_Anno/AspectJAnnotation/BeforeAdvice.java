@@ -1,4 +1,4 @@
-package com.example.demo.Chapter5_AOP.AspectJAnnotationTest;
+package com.example.demo.Chapter5_AOP_Anno.AspectJAnnotation;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,18 +14,14 @@ import org.springframework.stereotype.Component;
 public class BeforeAdvice {
     private static Logger LOGGER = LoggerFactory.getLogger(BeforeAdvice.class);
 
-    /**
-     * BeforeAdviceV1
-     * @param joinPoint
-     */
     /*
     @Before("execution(* com.example.demo.Chapter5_AOP.AspectJAnnotation..sing*(com.example.demo.Chapter5_AOP.AspectJAnnotation.Guitar))")
     public void simpleBeforeAdvice(JoinPoint joinPoint) {
         var signature = (MethodSignature) joinPoint.getSignature();
         LOGGER.info(" > Executing: {} from {}", signature.getName(), signature.
                 getDeclaringTypeName() );
-    }*/
-
+    }
+    */
 
     /**
      * BeforeAdviceV2
@@ -44,7 +40,8 @@ public class BeforeAdvice {
     /**
      * BeforeAdviceV3 - Compose
      */
-    @Pointcut("execution(* com.example.demo.Chapter5_AOP.AspectJAnnotationTest..sing*(com.example.demo.Chapter5_AOP.AspectJAnnotationTest.Guitar))")
+
+    @Pointcut("execution(* com.example.demo.Chapter5_AOP_Anno.AspectJAnnotation..sing*(com.example.demo.Chapter5_AOP_Anno.AspectJAnnotation.Guitar))")
     public void singExecution(){}
 
     @Pointcut("bean(john*)")
@@ -53,7 +50,7 @@ public class BeforeAdvice {
     @Before("singExecution() && isJohn()")
     public void simpleBeforeAdvice(JoinPoint joinPoint) {
         var signature = (MethodSignature) joinPoint.getSignature();
-        LOGGER.info(" Before Advise! > Executing: {} from {}", signature.getName(), signature.getDeclaringTypeName() );
+        LOGGER.info(" > Executing: {} from {}", signature.getName(), signature.getDeclaringTypeName() );
     }
 
 

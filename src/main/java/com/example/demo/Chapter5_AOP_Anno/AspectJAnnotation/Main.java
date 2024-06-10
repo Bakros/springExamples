@@ -1,4 +1,4 @@
-package com.example.demo.Chapter5_AOP.AspectJAnnotation;
+package com.example.demo.Chapter5_AOP_Anno.AspectJAnnotation;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

@@ -1,4 +1,4 @@
-package com.example.demo.Chapter5_AOP.AspectJAnnotation;
+package com.example.demo.Chapter5_AOP_Anno.AspectJAnnotation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
