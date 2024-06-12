@@ -9,6 +9,16 @@ import java.util.Set;
 
 @Entity
 @Table(name="SINGER")
+@NamedQueries({
+        @NamedQuery(name="Singer.findById",
+                query="select distinct s from Singer s " +
+                        "left join fetch s.albums a " +
+                        "left join fetch s.instruments i " +
+                        "where s.id = :id"),
+        @NamedQuery(name = "Singer.findAllWithAlbum",
+                query = "select distinct s from Singer s " +
+                        "left join fetch s.albums a " +
+                        "left join fetch s.instruments i")})
 public class Singer extends AbstractEntity {
     @Serial
     private static final long serialVersionUID = 2L;

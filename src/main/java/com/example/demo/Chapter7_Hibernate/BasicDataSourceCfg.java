@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:db/jdbc.properties")
+@PropertySource("classpath:application.properties")
 public class BasicDataSourceCfg {
     private static Logger LOGGER = LoggerFactory.getLogger(BasicDataSourceCfg.class);
 

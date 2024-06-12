@@ -40,4 +40,9 @@ public class Album extends AbstractEntity {
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    @Override
+    public String toString() {
+        return "Title: "+getTitle() + " - Released Date: "+getReleaseDate();
+    }
 }

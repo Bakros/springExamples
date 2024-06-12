@@ -4,6 +4,7 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.dialect.MariaDB106Dialect;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,9 @@ public class HibernateConfig {
 
     private static Logger LOGGER = LoggerFactory.getLogger(HibernateConfig.class);
 
+    @Value("${spring.jpa.show-sql}")
+    private String showSQL;
+
     @Autowired
     DataSource dataSource;
 
@@ -39,6 +43,7 @@ public class HibernateConfig {
         hibernateProp.put(Environment.MAX_FETCH_DEPTH, 3);
         hibernateProp.put(Environment.STATEMENT_BATCH_SIZE, 10);
         hibernateProp.put(Environment.STATEMENT_FETCH_SIZE, 50);
+        hibernateProp.put(Environment.SHOW_SQL, showSQL);
         // hibernateProp.put(Environment.JTA_PLATFORM, "org.springframework.orm.hibernate5.ConfigurableJtaPlatform");
         return hibernateProp;
     }
