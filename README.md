@@ -21,3 +21,6 @@ Otherwise the setter is not executed and the Bean is never inyected.
 
 
 
+<h2>Package com.example.demo.Chapter6.JDBCTemplate.records<h2>
+
+Permite levantar una DB Embebida H2. Nada más.
