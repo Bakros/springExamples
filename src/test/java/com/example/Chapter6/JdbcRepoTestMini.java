@@ -78,6 +78,8 @@ public class JdbcRepoTestMini {
         }
         @Bean
         public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+
+            System.out.println("datasource: "+dataSource.toString());
             return new JdbcTemplate(dataSource);
         }
 

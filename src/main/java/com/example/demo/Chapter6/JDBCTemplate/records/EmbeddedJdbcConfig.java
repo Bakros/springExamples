@@ -18,7 +18,7 @@ public class EmbeddedJdbcConfig {
         try {
             var dbBuilder = new EmbeddedDatabaseBuilder();
             return dbBuilder.setType(EmbeddedDatabaseType.H2)
-                    .addScripts("classpath:h2/schema.sql",
+                    .addScripts("classpath:h2/create-schema.sql",
                             "classpath:h2/test-data.sql").build();
         } catch (Exception e) {
             LOGGER.error("Embedded DataSource bean cannot be created!", e);
