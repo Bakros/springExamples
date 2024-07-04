@@ -4,7 +4,9 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import javax.sql.DataSource;
 
@@ -23,8 +25,13 @@ public class DatabaseConfig {
         config.setMaximumPoolSize(10);
         config.setIdleTimeout(600000); // 10 minutes
 
-        var hikariDS = new HikariDataSource(config);
+        DataSource hikariDS = new HikariDataSource(config);
 
+        // Execute specific script to create the schema and populate de database
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(new ClassPathResource("h2/create-schema.sql"));
+        populator.addScript(new ClassPathResource("h2/test-data.sql"));
+        populator.execute(hikariDS);
 
         return hikariDS;
     }
@@ -33,4 +40,7 @@ public class DatabaseConfig {
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
+
+
+
 }
