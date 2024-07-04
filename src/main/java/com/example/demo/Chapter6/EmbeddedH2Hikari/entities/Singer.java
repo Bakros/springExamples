@@ -25,12 +25,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter6.JDBCTemplate.records;
+package com.example.demo.Chapter6.EmbeddedH2Hikari.entities;
 
+import java.sql.Date;
+import java.util.List;
 
-import java.time.LocalDate;
+public record Singer(Long id,
+                     String firstName,
+                     String lastName,
+                     Date birthDate,
+                     List<Album> albums) {}
 
-public record Album(Long id,
-                    Long singerId,
-                    String title,
-                    LocalDate releaseDate) {}

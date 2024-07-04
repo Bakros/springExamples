@@ -25,7 +25,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter6.JDBCTemplate.records.repo;
+package com.example.demo.Chapter6.EmbeddedH2Hikari.repo;
 
 import com.example.demo.Chapter6.JDBCTemplate.records.Entities.Singer;
 import org.springframework.beans.factory.annotation.Autowired;

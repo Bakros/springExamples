@@ -1,6 +1,6 @@
 package com.example.Chapter6;
 
-import com.example.demo.Chapter6.JDBCTemplate.records.Singer;
+import com.example.demo.Chapter6.JDBCTemplate.records.Entities.Singer;
 import com.example.demo.Chapter6.JDBCTemplate.records.repo.SingerJdbcRepo;
 import com.example.demo.Chapter6.JDBCTemplate.records.repo.SingerRepo;
 import org.junit.jupiter.api.DisplayName;

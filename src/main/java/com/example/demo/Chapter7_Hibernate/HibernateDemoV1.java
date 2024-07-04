@@ -7,8 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.sql.DataSource;
 import java.util.List;
 
+
+/**
+ * Hibernate example using installed MariaDB in localhost
+ */
 public class HibernateDemoV1 {
     private static final Logger LOGGER = LoggerFactory.getLogger(HibernateDemoV1.class);
     public static void main(String[] args) {
@@ -16,6 +21,9 @@ public class HibernateDemoV1 {
         var ctx = new AnnotationConfigApplicationContext(HibernateConfig.class);
 
         SessionFactory sessionFactory = (SessionFactory) ctx.getBean("sessionFactory");
+
+
+        System.out.println("Connection Pool > " + ctx.getBean("dataSource", DataSource.class).getClass().getName());
 
         //System.out.println(sessionFactory.getProperties().toString());
 

@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.AbstractEnvironment;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * Created by iuliana.cosmina on 16/12/2021
@@ -43,10 +44,24 @@ public class Chapter6Application {
 
     public static void main(String... args) {
         System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "dev");
+
         var ctx = SpringApplication.run(Chapter6Application.class, args);
 
         var repo = ctx.getBean(SingerRepo.class);
         repo.findAll().forEach(singer -> LOGGER.info(singer.toString()));
+
+        System.out.println("DataSource used > " + repo.getJdbcTemplate().getDataSource().getClass().getName());
+
+        // Get All beans
+        /*
+        String[] beanNames = ctx.getBeanDefinitionNames();
+        System.out.println("Beans in ApplicationContext:");
+        for (String beanName : beanNames) {
+            System.out.println(beanName + " : " + ctx.getBean(beanName).getClass().getName());
+        }
+        */
+
+
     }
 
 }
