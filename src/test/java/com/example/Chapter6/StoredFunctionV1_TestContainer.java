@@ -15,8 +15,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlMergeMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.testcontainers.containers.MariaDBContainer;
-import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.junit.jupiter.Container;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import com.example.demo.Chapter6.JDBCTemplate.records.repo.SingerJdbcRepo;
@@ -27,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
 @Sql({ "classpath:testcontainers/drop-schema.sql", "classpath:testcontainers/create-schema.sql" }) // This works
-@SpringJUnitConfig(classes = {StoredFunctionV1Test.TestContainersConfig.class, SingerJdbcRepo.class})
-public class StoredFunctionV1Test {
-    private static final Logger LOGGER = LoggerFactory.getLogger(StoredFunctionV1Test.class);
+@SpringJUnitConfig(classes = {StoredFunctionV1_TestContainer.TestContainersConfig.class, SingerJdbcRepo.class})
+public class StoredFunctionV1_TestContainer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(StoredFunctionV1_TestContainer.class);
 
     @Autowired
     SingerRepo singerRepo;

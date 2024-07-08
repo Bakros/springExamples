@@ -37,4 +37,4 @@ Ejemplo de como levantar una BD H2 embebida ocupando HikariConfig
 y HikariDataSource para levantar el DataSource asociado. Este ejemplo
 también permite ejecutar algunos scripts que permiten crear el schema 
 y poblar de datos la BD. En términos prácticos hace lo mismo que "com.example.demo.Chapter6.JDBCTemplate.records" 
-pero con otro proveedor de DataSource.
+pero con otro proveedor de DataSource. 
