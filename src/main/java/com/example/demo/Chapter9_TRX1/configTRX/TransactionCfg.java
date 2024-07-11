@@ -47,7 +47,7 @@ import java.util.Properties;
 @Configuration
 //Esta anotación habilita el uso de anotaciones para marcar las transacciones.
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.example.demo.Chapter9_Transaction.repos", "com.example.demo.Chapter9_Transaction.services "})
+//@ComponentScan(basePackages = {"com.example.demo.Chapter9_TRX1.repos", "com.example.demo.Chapter9_TRX1.services "})
 public class TransactionCfg {
 
     @Autowired

@@ -2,7 +2,6 @@ package com.example.EmbeddedBD;
 
 import com.example.EmbeddedBD.model.Contact;
 import com.example.EmbeddedBD.repository.ContactRepository;
-import com.example.demo.Chapter6.JDBCTemplate.records.EmbeddedJdbcConfig;
 import jakarta.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,7 @@ import javax.sql.DataSource;
 
 @SpringBootApplication
 public class Start {
-    private static Logger LOGGER = LoggerFactory.getLogger(EmbeddedJdbcConfig.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(Start.class);
 
     @Autowired
     public EntityManager entityManager;

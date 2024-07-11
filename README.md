@@ -24,7 +24,7 @@ Está pensado para levantar de forma fácil BD embebidas.
 
 <h3>Package com.example.EmbeddedBD.DB</h3>
 Permite levantar una BD H2 embebida con Spring Boot utilizando DataSourceBuilder. 
-Por defecto utiliza como Hiraki como ConnectionPool.
+Por defecto utiliza Hiraki como ConnectionPool.
 
 <h3>Package com.example.demo.Chapter7_Hibernate</h3>
 Ejemplos con Hibernate. Se utiliza una MariaBD instalada de forma local (localhost) 

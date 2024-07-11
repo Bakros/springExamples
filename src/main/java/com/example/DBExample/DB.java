@@ -1,23 +1,23 @@
-package com.example.demo.Chapter9_TRX1.configDB;
+package com.example.DBExample;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 @Configuration
-public class DatabaseConfig {
+public class DB {
 
     @Bean
     public DataSource dataSource(){
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:h2:mem:testdb"); // H2 in-memory database
-        config.setUsername("sa");
+        config.setUsername("test");
         config.setPassword("");
         config.setDriverClassName("org.h2.Driver");
 
@@ -29,20 +29,22 @@ public class DatabaseConfig {
 
         // Execute specific script to create the schema and populate de database
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new ClassPathResource("testcontainers/drop-schema.sql"));
-        populator.addScript(new ClassPathResource("testcontainers/create-schema.sql"));
+        populator.addScript(new ClassPathResource("scriptContainer/DropTables.sql"));
+        populator.addScript(new ClassPathResource("scriptContainer/CreateTable.sql"));
+
         populator.execute(hikariDS);
+
+        try {
+            ResourceDatabasePopulator populator2 = new ResourceDatabasePopulator();
+            populator2.addScript(new ClassPathResource("scriptContainer/InsertData.sql"));
+            populator2.populate(hikariDS.getConnection());
+            hikariDS.getConnection().commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
 
         return hikariDS;
     }
-
-    /*
-    @Bean
-    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
-    }
-    */
-
-
 
 }
