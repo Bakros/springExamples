@@ -38,3 +38,13 @@ y HikariDataSource para levantar el DataSource asociado. Este ejemplo
 también permite ejecutar algunos scripts que permiten crear el schema 
 y poblar de datos la BD. En términos prácticos hace lo mismo que "com.example.demo.Chapter6.JDBCTemplate.records" 
 pero con otro proveedor de DataSource. 
+
+
+Problemas actuales al 17-07
+> package com.example.demo.Chapter9_TRX1
+Exception in thread "main" java.lang.IllegalArgumentException: Unable to locate entity descriptor: com.example.demo.Chapter9_TRX1.entities.Singer
+
+> package com.example.demo.Chapter9_Transaction > Work with MariaDB
+	
+> package com.example.DBExample 
+    Inserts are not been inserted.
