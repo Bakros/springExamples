@@ -46,5 +46,5 @@ public interface SingerService {
 
     String findFirstNameById(Long id);
 
-    //String findFirstNameByIdUsingProc(Long id);
+    // String findFirstNameByIdUsingProc(Long id);
 }

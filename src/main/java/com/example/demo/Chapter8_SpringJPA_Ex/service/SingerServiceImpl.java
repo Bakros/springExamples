@@ -60,7 +60,7 @@ public class SingerServiceImpl  implements SingerService {
     @Transactional(readOnly=true)
     @Override
     public Stream<Singer> findAll() {
-        return em.createNamedQuery("Singer.FIND_ALL", Singer.class)
+        return em.createNamedQuery(Singer.FIND_ALL, Singer.class)
                 .getResultList().stream();
     }
 
@@ -113,12 +113,12 @@ public class SingerServiceImpl  implements SingerService {
                       .setParameter(1, id).getSingleResult().toString();
     }
 
-//    @Override
-//    public String findFirstNameByIdUsingProc(Long id) {
-//        StoredProcedureQuery query = em.createNamedStoredProcedureQuery("getFirstNameByIdProc");
-//        query.setParameter( "in_id", 1L );
-//
-//        query.execute();
-//        return (String) query.getOutputParameterValue( "fn_res" );
-//    }
+//   @Override
+//   public String findFirstNameByIdUsingProc(Long id) {
+//       StoredProcedureQuery query = em.createNamedStoredProcedureQuery("getFirstNameByIdProc");
+//       query.setParameter( "in_id", 1L );
+
+//       query.execute();
+//       return (String) query.getOutputParameterValue( "fn_res" );
+//   }
 }

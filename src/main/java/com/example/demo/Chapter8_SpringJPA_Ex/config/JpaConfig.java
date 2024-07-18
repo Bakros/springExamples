@@ -30,10 +30,7 @@ package com.example.demo.Chapter8_SpringJPA_Ex.config;
 import org.hibernate.cfg.Environment;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -72,7 +69,7 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         var factory = new LocalContainerEntityManagerFactoryBean();
         factory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        factory.setPackagesToScan("com.apress.prospring6.eight.entities");
+        factory.setPackagesToScan("com.example.demo.Chapter8_SpringJPA_Ex.entities");
         factory.setDataSource(dataSource);
         factory.setJpaProperties(jpaProperties());
         factory.setJpaVendorAdapter(jpaVendorAdapter());
@@ -85,7 +82,7 @@ public class JpaConfig {
         jpaProps.put(Environment.HBM2DDL_AUTO, "none");
         jpaProps.put(Environment.FORMAT_SQL, false);
         jpaProps.put(Environment.USE_SQL_COMMENTS, false);
-        jpaProps.put(Environment.SHOW_SQL, false);
+        jpaProps.put(Environment.SHOW_SQL, true);
         return jpaProps;
     }
 }

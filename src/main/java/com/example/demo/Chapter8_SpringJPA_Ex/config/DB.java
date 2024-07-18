@@ -1,5 +1,6 @@
 package com.example.demo.Chapter8_SpringJPA_Ex.config;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
@@ -37,9 +38,11 @@ public class DB {
         try {
             ResourceDatabasePopulator populator2 = new ResourceDatabasePopulator();
             populator2.addScript(new ClassPathResource("scriptContainer/InsertData.sql"));
+            //populator2.addScript(new ClassPathResource("scriptContainer/StoredFunction.sql"));
             populator2.populate(hikariDS.getConnection());
             hikariDS.getConnection().commit();
         } catch (SQLException e) {
+            System.out.println("Error Seba");
             throw new RuntimeException(e);
         }
 

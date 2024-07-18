@@ -44,11 +44,14 @@ public class JPADemo {
             var singerService = ctx.getBean(SingerService.class);
 
             LOGGER.info(" ----Retrieving first name using stored procedure:");
-            //var ben = singerService.findFirstNameByIdUsingProc(2L);
-            //LOGGER.info("Extracted: {}", ben);
+          //  var ben = singerService.findFirstNameByIdUsingProc(2L);
+         //   LOGGER.info("Extracted: {}", ben);
 
             LOGGER.info(" ---- Listing singers:");
             singerService.findAll().forEach(s -> LOGGER.info(s.toString()));
+
+
+
         }
     }
 }

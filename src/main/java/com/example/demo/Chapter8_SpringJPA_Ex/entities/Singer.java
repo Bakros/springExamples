@@ -41,7 +41,7 @@ import java.util.Set;
 @Entity
 @Table(name = "SINGER")
 @NamedQueries({
-		@NamedQuery(name="Singer.FIND_ALL", query="select s from Singer s"),
+		@NamedQuery(name=Singer.FIND_ALL, query="select s from Singer s"),
 		@NamedQuery(name=Singer.FIND_SINGER_BY_ID,
 				query="""
       				select distinct s from Singer s
@@ -85,7 +85,7 @@ public class Singer extends AbstractEntity {
 	@Serial
 	private static final long serialVersionUID = 2L;
 
-	//public static final String FIND_ALL = "Singer.findAll";
+	public static final String FIND_ALL = "Singer.findAll";
 	public static final String FIND_SINGER_BY_ID = "Singer.findById";
 	public static final String FIND_ALL_WITH_ALBUM = "Singer.findAllWithAlbum";
 

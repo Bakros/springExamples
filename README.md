@@ -39,12 +39,18 @@ también permite ejecutar algunos scripts que permiten crear el schema
 y poblar de datos la BD. En términos prácticos hace lo mismo que "com.example.demo.Chapter6.JDBCTemplate.records" 
 pero con otro proveedor de DataSource. 
 
+<h3>Package com.example.demo.Chapter9_Transaction</h3>
+Ejemplo del uso de JPA y Transacciones ocupando una versión instalada de forma local de MariaDB.
 
-Problemas actuales al 17-07
-> package com.example.demo.Chapter9_TRX1
-Exception in thread "main" java.lang.IllegalArgumentException: Unable to locate entity descriptor: com.example.demo.Chapter9_TRX1.entities.Singer
+<h3>Package com.example.demo.Chapter8_SpringJPA_Ex</h3>
+Ejemplo del uso de JPA y JpaTransactionManager sobre una BD embebida H2.<br/>
+La BD embebida es levantada a través de HikariDataSource y se usa ResourceDatabasePopulator para
+crear la tabla y popular los datos.
 
-> package com.example.demo.Chapter9_Transaction > Work with MariaDB
-	
-> package com.example.DBExample 
-    Inserts are not been inserted.
+<h3>package com.example.DBExample</h3>
+Ejemplo de Spring JPA Data con una base de datos embebida H2.
+La BD embebida es levantada a través de HikariDataSource y se usa ResourceDatabasePopulator para
+crear la tabla y popular los datos.
+> Problem: Inserts are not been inserted.
+
+
