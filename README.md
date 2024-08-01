@@ -51,6 +51,5 @@ crear la tabla y popular los datos.
 Ejemplo de Spring JPA Data con una base de datos embebida H2.
 La BD embebida es levantada a través de HikariDataSource y se usa ResourceDatabasePopulator para
 crear la tabla y popular los datos.
-> Problem: Inserts are not been inserted.
 
 

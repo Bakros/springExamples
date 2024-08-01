@@ -44,7 +44,7 @@ import javax.sql.DataSource;
 @Configuration
 @PropertySource("classpath:db/jdbc.properties")
 public class BasicDataSourceCfg {
-    private static Logger LOGGER = LoggerFactory.getLogger(BasicDataSourceCfg.class);
+   // private static Logger LOGGER = LoggerFactory.getLogger(BasicDataSourceCfg.class);
 
     @Value("${jdbc.driverClassName}")
     private String driverClassName;
@@ -70,7 +70,7 @@ public class BasicDataSourceCfg {
             dataSource.setMaximumPoolSize(25); // 25 is a good enough data pool size, it is a database in a container after all
             return dataSource;
         } catch (Exception e) {
-            LOGGER.error("Hikari DataSource bean cannot be created!", e);
+           // LOGGER.error("Hikari DataSource bean cannot be created!", e);
             return null;
         }
     }

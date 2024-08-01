@@ -47,4 +47,5 @@ public interface SingerRepo {
     Long countAllSingers();
 
     Singer save(Singer singer);
+
 }

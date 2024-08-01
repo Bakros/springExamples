@@ -25,15 +25,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter9_Transaction.config;
+package com.example.demo.Chapter9_TransactionH2.config;
 
 import org.hibernate.cfg.Environment;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -45,22 +44,23 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * Created by iuliana.cosmina on 17/07/2022
+ * Created by iuliana.cosmina on 02/07/2022
  */
-@Import(BasicDataSourceCfg.class)
+@Import(DB.class)
+@PropertySource("classpath:customProperties/Chapter9.properties")
 @Configuration
-//Esta anotación habilita el uso de anotaciones para marcar las transacciones.
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.example.demo.Chapter9_Transaction.repos", "com.example.demo.Chapter9_Transaction.services "})
-public class TransactionCfg {
-   // private static Logger LOGGER = LoggerFactory.getLogger(TransactionCfg.class);
+@ComponentScan(basePackages = {"com.example.demo.Chapter9_TransactionH2.service"})
+public class JpaConfig {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(JpaConfig.class);
 
     @Autowired
     DataSource dataSource;
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        JpaTransactionManager transactionManager=new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
@@ -74,7 +74,7 @@ public class TransactionCfg {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         var factory = new LocalContainerEntityManagerFactoryBean();
         factory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        factory.setPackagesToScan("com.example.demo.Chapter9_Transaction.entities");
+        factory.setPackagesToScan("com.example.demo.Chapter9_TransactionH2.entities");
         factory.setDataSource(dataSource);
         factory.setJpaProperties(jpaProperties());
         factory.setJpaVendorAdapter(jpaVendorAdapter());
@@ -85,10 +85,9 @@ public class TransactionCfg {
     public Properties jpaProperties() {
         Properties jpaProps = new Properties();
         jpaProps.put(Environment.HBM2DDL_AUTO, "none");
-        jpaProps.put(Environment.FORMAT_SQL, false);
-        jpaProps.put(Environment.STATEMENT_BATCH_SIZE, 30);
-        jpaProps.put(Environment.USE_SQL_COMMENTS, false);
-        jpaProps.put(Environment.SHOW_SQL, false);
+        jpaProps.put(Environment.FORMAT_SQL, true);
+        jpaProps.put(Environment.USE_SQL_COMMENTS, true);
+        jpaProps.put(Environment.SHOW_SQL, true);
         return jpaProps;
     }
 }

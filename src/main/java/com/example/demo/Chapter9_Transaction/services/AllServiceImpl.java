@@ -94,4 +94,10 @@ public class AllServiceImpl implements AllService{
     public Long countSingers() {
         return singerRepo.countAllSingers();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Singer> findOne(Long id) {
+        return singerRepo.findById(id);
+    }
 }

@@ -30,10 +30,14 @@ package com.example.demo.Chapter9_Transaction.repos;
 
 import com.example.demo.Chapter9_Transaction.entities.Singer;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.Metamodel;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -45,8 +49,27 @@ public class SingerRepoImpl implements SingerRepo {
     @PersistenceContext
     private EntityManager em;
 
+    ;
+
     @Override
     public Stream<Singer> findAll() {
+        System.out.println("HELLOOOOOOOOOOOOOOOOOOO");
+        Metamodel metamodel = em.getMetamodel();
+        Set<EntityType<?>> entities = metamodel.getEntities();
+
+        for (EntityType<?> entity : entities) {
+            Class<?> entityClass = entity.getJavaType();
+            if (entityClass.isAnnotationPresent(NamedQuery.class)) {
+                NamedQuery[] namedQueries = entityClass.getAnnotationsByType(NamedQuery.class);
+                for (NamedQuery namedQuery : namedQueries) {
+                    System.out.println("Entity: " + entityClass.getSimpleName());
+                    System.out.println("Named Query Name: " + namedQuery.name());
+                    System.out.println("Query: " + namedQuery.query());
+                    System.out.println("------------------------------");
+                }
+            }
+        }
+
         return em.createNamedQuery(Singer.FIND_ALL, Singer.class).getResultList().stream();
     }
 

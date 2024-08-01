@@ -25,80 +25,50 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter8_SpringJPA_Ex.entities;
+package com.example.demo.Chapter9_TransactionH2.entities;
 
 import jakarta.persistence.*;
 
 import java.io.Serial;
-import java.time.LocalDate;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 4/21/17.
  */
 @Entity
-@Table(name = "ALBUM")
-@NamedQueries({
-		@NamedQuery(name=Album.FIND_ALL, query="select a from Album a where a.singer= :singer")
-})
-public class Album extends AbstractEntity {
+@Table(name = "INSTRUMENT")
+public class Instrument implements Serializable {
 	@Serial
-	private static final long serialVersionUID = 3L;
+	private static final long serialVersionUID = 4L;
+	private String instrumentId;
+	private Set<Singer> singers = new HashSet<>();
 
-	public static final String FIND_ALL = "Album.findAll";
-
-	@Column
-	private String title;
-	@Column(name = "RELEASE_DATE")
-	private LocalDate releaseDate;
-
-	@ManyToOne
-	@JoinColumn(name = "SINGER_ID")
-	private Singer singer;
-
-	public Singer getSinger() {
-		return this.singer;
+	@Id
+	@Column(name = "INSTRUMENT_ID")
+	public String getInstrumentId() {
+		return this.instrumentId;
 	}
 
-	public String getTitle() {
-		return this.title;
+	@ManyToMany
+	@JoinTable(name = "SINGER_INSTRUMENT",
+			joinColumns = @JoinColumn(name = "INSTRUMENT_ID"),
+			inverseJoinColumns = @JoinColumn(name = "SINGER_ID"))
+	public Set<Singer> getSingers() {
+		return this.singers;
 	}
 
-	public LocalDate getReleaseDate() {
-		return this.releaseDate;
+	public void setSingers(Set<Singer> singers) {
+		this.singers = singers;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public void setSinger(Singer singer) {
-		this.singer = singer;
-	}
-
-	public void setReleaseDate(LocalDate releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Album album = (Album) o;
-		if(this.id != null) {
-			return this.id.equals(((Album) o).id);
-		}
-		return title.equals(album.title) && releaseDate.equals(album.releaseDate);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(title, releaseDate);
+	public void setInstrumentId(String instrumentId) {
+		this.instrumentId = instrumentId;
 	}
 
 	@Override
 	public String toString() {
-		return "Album - Id: " + id + ", Singer id: " + singer.getId()
-				+ ", Title: " + title + ", Release Date: " + releaseDate;
+		return "Instrument :" + getInstrumentId();
 	}
 }

@@ -25,15 +25,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter9_Transaction.config;
+package com.example.DBExample;
 
 import org.hibernate.cfg.Environment;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -44,16 +42,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * Created by iuliana.cosmina on 17/07/2022
- */
-@Import(BasicDataSourceCfg.class)
 @Configuration
 //Esta anotación habilita el uso de anotaciones para marcar las transacciones.
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.example.demo.Chapter9_Transaction.repos", "com.example.demo.Chapter9_Transaction.services "})
 public class TransactionCfg {
-   // private static Logger LOGGER = LoggerFactory.getLogger(TransactionCfg.class);
 
     @Autowired
     DataSource dataSource;
@@ -74,7 +66,7 @@ public class TransactionCfg {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         var factory = new LocalContainerEntityManagerFactoryBean();
         factory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        factory.setPackagesToScan("com.example.demo.Chapter9_Transaction.entities");
+        factory.setPackagesToScan("com.example.DBExample.Entities");
         factory.setDataSource(dataSource);
         factory.setJpaProperties(jpaProperties());
         factory.setJpaVendorAdapter(jpaVendorAdapter());

@@ -38,6 +38,7 @@ import java.util.stream.Stream;
 public interface AllService {
 
     Optional<Singer> findByIdWithAlbums(Long id);
+
     Stream<Singer> findAllWithAlbums();
 
     void update(Singer singer);
@@ -45,4 +46,6 @@ public interface AllService {
     void saveSingerWithAlbums(Singer s, Set<Album> albums) throws TitleTooLongException;
 
     Long countSingers();
+
+    Optional<Singer> findOne(Long id);
 }

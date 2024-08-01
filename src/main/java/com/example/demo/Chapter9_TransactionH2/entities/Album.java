@@ -25,7 +25,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter8_SpringJPA_Ex.entities;
+package com.example.demo.Chapter9_TransactionH2.entities;
+
 
 import jakarta.persistence.*;
 

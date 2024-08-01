@@ -33,7 +33,7 @@ public class HibernateDemoV1 {
 
 
         var singer = singerDao.findById(2L);
-        System.out.println(singer.getFirstName());
+        System.out.println("TEST " + singer.getFirstName());
 
         LOGGER.info("Call the NamedQuery and list it");
         List<Singer> listSinger = singerDao.findAllWithAlbum();

@@ -25,44 +25,31 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter9_Transaction;
+package com.example.demo.Chapter9_TransactionH2.service;
 
+import com.example.demo.Chapter9_TransactionH2.view.SingerSummary;
+import com.example.demo.Chapter9_TransactionH2.view.SingerSummaryRecord;
 
-import com.example.demo.Chapter9_Transaction.config.TransactionCfg;
-import com.example.demo.Chapter9_Transaction.services.AllService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import java.util.stream.Stream;
 
 /**
- * Created by iuliana.cosmina on 01/08/2022
+ * Created by iuliana.cosmina on 02/07/2022
  */
-public class Chapter9Demo {
+public interface SingerSummaryService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Chapter9Demo.class);
+    String ALL_SINGER_SUMMARY_JPQL_QUERY ="""
+            select new com.apress.prospring6.eight.view.SingerSummary(
+            s.firstName, s.lastName, a.title) from Singer s
+            left join s.albums a
+            where a.releaseDate=(select max(a2.releaseDate) from Album a2 where a2.singer.id = s.id)
+            """;
 
-    public static void main(String... args) {
+    String ALL_SINGER_SUMMARY_RECORD_JPQL_QUERY ="""
+            select s.firstName, s.lastName, a.title from Singer s
+            left join s.albums a 
+            where a.releaseDate=(select max(a2.releaseDate) from Album a2 where a2.singer.id = s.id)
+            """;
 
-
-
-        LOGGER.info(String.valueOf(LOGGER.isDebugEnabled()));
-
-        try (var ctx = new AnnotationConfigApplicationContext(TransactionCfg.class)) {
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            System.out.println("Beans in ApplicationContext:");
-            for (String beanName : beanNames) {
-                System.out.println(beanName + " : " + ctx.getBean(beanName).getClass().getName());
-            }
-
-
-            var service = ctx.getBean(AllService.class);
-
-
-            //System.out.println(service.findOne(1L));
-
-            LOGGER.debug(" ---- Listing singers:");
-            service.findAllWithAlbums().forEach(s -> LOGGER.info(s.toString()));
-        }
-    }
+    Stream<SingerSummary> findAll();
+    Stream<SingerSummaryRecord> findAllAsRecord();
 }

@@ -25,44 +25,33 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter9_Transaction;
+package com.example.demo.Chapter9_TransactionH2;
 
-
-import com.example.demo.Chapter9_Transaction.config.TransactionCfg;
-import com.example.demo.Chapter9_Transaction.services.AllService;
+import com.example.demo.Chapter9_TransactionH2.config.JpaConfig;
+import com.example.demo.Chapter9_TransactionH2.service.SingerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * Created by iuliana.cosmina on 01/08/2022
+ * Created by iuliana.cosmina on 02/07/2022
  */
-public class Chapter9Demo {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Chapter9Demo.class);
+public class JPADemo {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JPADemo.class);
 
     public static void main(String... args) {
+        try (var ctx = new AnnotationConfigApplicationContext(JpaConfig.class)) {
+            var singerService = ctx.getBean(SingerService.class);
+
+            LOGGER.info(" ----Retrieving first name using stored procedure:");
+          //  var ben = singerService.findFirstNameByIdUsingProc(2L);
+         //   LOGGER.info("Extracted: {}", ben);
+
+            LOGGER.info(" ---- Listing singers:");
+            singerService.findAll().forEach(s -> LOGGER.info(s.toString()));
 
 
 
-        LOGGER.info(String.valueOf(LOGGER.isDebugEnabled()));
-
-        try (var ctx = new AnnotationConfigApplicationContext(TransactionCfg.class)) {
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            System.out.println("Beans in ApplicationContext:");
-            for (String beanName : beanNames) {
-                System.out.println(beanName + " : " + ctx.getBean(beanName).getClass().getName());
-            }
-
-
-            var service = ctx.getBean(AllService.class);
-
-
-            //System.out.println(service.findOne(1L));
-
-            LOGGER.debug(" ---- Listing singers:");
-            service.findAllWithAlbums().forEach(s -> LOGGER.info(s.toString()));
         }
     }
 }

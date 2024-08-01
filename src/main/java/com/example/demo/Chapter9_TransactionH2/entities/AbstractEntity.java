@@ -25,44 +25,44 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter9_Transaction;
+package com.example.demo.Chapter9_TransactionH2.entities;
 
+import jakarta.persistence.*;
 
-import com.example.demo.Chapter9_Transaction.config.TransactionCfg;
-import com.example.demo.Chapter9_Transaction.services.AllService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import java.io.Serial;
+import java.io.Serializable;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
- * Created by iuliana.cosmina on 01/08/2022
+ * Created by iuliana.cosmina on 22/05/2022
  */
-public class Chapter9Demo {
+@MappedSuperclass
+public abstract class AbstractEntity implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Chapter9Demo.class);
+    protected Long id;
+    protected int version;
 
-    public static void main(String... args) {
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "ID")
+    public Long getId() {
+        return this.id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    @Version
+    @Column(name = "VERSION")
+    public int getVersion() {
+        return version;
+    }
 
-        LOGGER.info(String.valueOf(LOGGER.isDebugEnabled()));
-
-        try (var ctx = new AnnotationConfigApplicationContext(TransactionCfg.class)) {
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            System.out.println("Beans in ApplicationContext:");
-            for (String beanName : beanNames) {
-                System.out.println(beanName + " : " + ctx.getBean(beanName).getClass().getName());
-            }
-
-
-            var service = ctx.getBean(AllService.class);
-
-
-            //System.out.println(service.findOne(1L));
-
-            LOGGER.debug(" ---- Listing singers:");
-            service.findAllWithAlbums().forEach(s -> LOGGER.info(s.toString()));
-        }
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

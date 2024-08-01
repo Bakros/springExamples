@@ -25,44 +25,41 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.example.demo.Chapter9_Transaction;
+package com.example.demo.Chapter9_TransactionH2.view;
 
-
-import com.example.demo.Chapter9_Transaction.config.TransactionCfg;
-import com.example.demo.Chapter9_Transaction.services.AllService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import java.io.Serializable;
 
 /**
- * Created by iuliana.cosmina on 01/08/2022
+ * Created by iuliana.cosmina on 02/07/2022
  */
-public class Chapter9Demo {
+public class SingerSummary implements Serializable {
+    private static final long serialVersionUID = 5L;
+    private String firstName;
+    private String lastName;
+    private String latestAlbum;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Chapter9Demo.class);
+    public SingerSummary(String firstName, String lastName,
+                         String latestAlbum) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.latestAlbum = latestAlbum;
+    }
 
-    public static void main(String... args) {
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
 
+    public String getLatestAlbum() {
+        return latestAlbum;
+    }
 
-        LOGGER.info(String.valueOf(LOGGER.isDebugEnabled()));
-
-        try (var ctx = new AnnotationConfigApplicationContext(TransactionCfg.class)) {
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            System.out.println("Beans in ApplicationContext:");
-            for (String beanName : beanNames) {
-                System.out.println(beanName + " : " + ctx.getBean(beanName).getClass().getName());
-            }
-
-
-            var service = ctx.getBean(AllService.class);
-
-
-            //System.out.println(service.findOne(1L));
-
-            LOGGER.debug(" ---- Listing singers:");
-            service.findAllWithAlbums().forEach(s -> LOGGER.info(s.toString()));
-        }
+    public String toString() {
+        return "First name: " + firstName + ", Last Name: " + lastName
+                + ", Most Recent Album: " + latestAlbum;
     }
 }
+
